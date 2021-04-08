@@ -15,13 +15,15 @@ body {
   margin: 0;
   padding: 10;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .main {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  height: 100%;
+  flex: auto;
 }
 .controls {
   background: white;
@@ -69,4 +71,12 @@ h1 {
 .btn-primary:hover {
   cursor: pointer;
   background: #167aec;
+}
+@media screen and (max-width: 800px) {
+  .main {
+    flex-direction: column;
+  }
+  .controls {
+    width: 100%;
+  }
 }

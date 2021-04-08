@@ -11,9 +11,10 @@ const debouncedSetUrl = debounce((url: string) =>
 );
 
 const DEFAULT_COLOR = "#cccccc";
+const DEFAULT_IMAGE = "https://nextcloud.chuckdries.com/s/SwkR8tiFNxJgrdM/download"
 
 export default function App() {
-  const [bgImage, setBgImage] = React.useState("");
+  const [bgImage, setBgImage] = React.useState(DEFAULT_IMAGE);
   const [bgColor, setBgColor] = React.useState(DEFAULT_COLOR);
   const [printpreview, setPrintpreview] = React.useState(false);
 
