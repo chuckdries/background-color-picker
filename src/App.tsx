@@ -2,6 +2,7 @@ import * as React from "react";
 import { HexColorPicker } from "react-colorful";
 import copy from "copy-to-clipboard";
 import debounce from "debounce";
+import classnames from "classnames";
 
 import "./styles.css";
 
@@ -14,6 +15,7 @@ const DEFAULT_COLOR = "#cccccc";
 export default function App() {
   const [bgImage, setBgImage] = React.useState("");
   const [bgColor, setBgColor] = React.useState(DEFAULT_COLOR);
+  const [printpreview, setPrintpreview] = React.useState(false);
 
   const setImage = React.useCallback((image: string) => {
     const url = new URL(window.location.toString());
@@ -54,7 +56,12 @@ export default function App() {
   }, [setColor]);
 
   return (
-    <div className="App" style={{ backgroundColor: bgColor }}>
+    <div
+      className="App"
+      style={{
+        backgroundColor: printpreview ? "white" : bgColor
+      }}
+    >
       <div className="main">
         <div className="controls">
           <h1>Chuck's transparent image background color picker</h1>
@@ -82,14 +89,45 @@ export default function App() {
           <button className="btn-primary" type="button" onClick={copyURL}>
             copy link
           </button>
+          <div>
+            <input
+              id="grayscale-input"
+              type="checkbox"
+              checked={printpreview}
+              onChange={(e) => {
+                setPrintpreview(e.target.checked);
+              }}
+            />
+            <label htmlFor="grayscale-input">print preview</label>
+          </div>
         </div>
         <div className="image-container">
           <img
+            className={classnames(printpreview && "border")}
             src={bgImage}
-            style={{ maxWidth: "80vw", maxHeight: "80vh" }}
+            style={{
+              maxWidth: "80vw",
+              maxHeight: "80vh",
+              backgroundColor: bgColor
+            }}
             alt="enter a URL in the box to the left"
           />
         </div>
+        {printpreview && (
+          <div className="image-container">
+            <img
+              className={classnames(printpreview && "border")}
+              src={bgImage}
+              style={{
+                maxWidth: "80vw",
+                maxHeight: "80vh",
+                filter: "grayscale(1)",
+                backgroundColor: bgColor
+              }}
+              alt="enter a URL in the box to the left"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

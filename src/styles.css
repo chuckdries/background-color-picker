@@ -35,12 +35,21 @@ body {
 .controls .react-colorful {
   margin: 0.5em auto;
 }
+.image-container img {
+  margin: 0;
+}
+.image-container img.border {
+  border: 3px solid rgb(0, 0, 0);
+}
 input[type="text"] {
   padding: 1em;
   width: 100%;
   margin: 0.5em 0 1em 0;
   border-radius: 5px;
   border: 1px solid rgb(110, 110, 110);
+}
+input[type="checkbox"] {
+  margin: 0.5em 0.5em 0.5em 0;
 }
 h1 {
   font-size: 28px;
